@@ -16,6 +16,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject playerDefenceSymbol;
     public GameObject enemyAttackSymbol;
     public GameObject enemyDefenceSymbol;
+    public GameObject playerAbilitySymbol;
     public int enemyRandomNum;
     public int abilityRandomNumber;
 
@@ -42,7 +43,7 @@ public class BattleSystem : MonoBehaviour
         playerDefenceSymbol.SetActive(false);
         enemyAttackSymbol.SetActive(false);
         enemyDefenceSymbol.SetActive(false);
-
+        playerAbilitySymbol.SetActive(false);
     }
 
     private void Update()
@@ -109,6 +110,12 @@ public class BattleSystem : MonoBehaviour
 
     public void playerTurn()
     {
+        playerAttackSymbol.SetActive(false);
+        playerDefenceSymbol.SetActive(false);
+        enemyAttackSymbol.SetActive(false);
+        enemyDefenceSymbol.SetActive(false);
+        playerAbilitySymbol.SetActive(false);
+
         gameUI.PlayerTurnText.text = "Your Turn....";
         gameUI.EnemyChoice.text = "";
 
@@ -135,13 +142,12 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator playerAttack()
     {
-            unitDead = enemyUnit.TakeDamage(playerUnit.unitDamage);
-
+        playerAttackSymbol.SetActive(true);
+        unitDead = enemyUnit.TakeDamage(playerUnit.unitDamage);
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
-
         state = BattleState.EnemyTurn;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2f);
 
         if (unitDead)
         {
@@ -166,6 +172,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator playerDefense()
     {
+        playerDefenceSymbol.SetActive(true);
         playerUnit.useDefense(playerUnit.unitDefense);
         playerHealthBar.setHealth(playerUnit.unitHealth);
 
@@ -177,6 +184,12 @@ public class BattleSystem : MonoBehaviour
 
     public void enemyTurn()
     {
+        playerAttackSymbol.SetActive(false);
+        playerDefenceSymbol.SetActive(false);
+        enemyAttackSymbol.SetActive(false);
+        enemyDefenceSymbol.SetActive(false);
+        playerAbilitySymbol.SetActive(false);
+
         gameUI.PlayerTurnText.text = "";
         enemyRandomNum = Random.Range(1, 11);  
 
@@ -225,6 +238,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator enemyAttack()
     {
+        enemyAttackSymbol.SetActive(true);
         gameUI.EnemyChoice.text = "Enemy is attacking";
         unitDead = playerUnit.TakeDamage(enemyUnit.unitDamage);
         playerHealthBar.setHealth(playerUnit.unitHealth);
@@ -245,6 +259,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator enemyDefense()
     {
+        enemyDefenceSymbol.SetActive(true);
         gameUI.EnemyChoice.text = "Enemy is defending";
         enemyUnit.useDefense(enemyUnit.unitDefense);
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
@@ -256,6 +271,7 @@ public class BattleSystem : MonoBehaviour
 
     public void abilityButton()
     {
+        playerAbilitySymbol.SetActive(true);
         usedAbility = true;
         abilityRandomNumber = Random.Range(1, 11);
         gameUI.abilityButton.SetActive(false);
@@ -265,6 +281,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 9)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -277,6 +299,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 8)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -289,6 +317,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 7)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -301,6 +335,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 6)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -313,6 +353,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 5)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -325,6 +371,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 4)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -337,6 +389,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 3)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -349,6 +407,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 2)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -361,6 +425,12 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 1)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+                if (enemyUnit.unitHealth <= 0)
+                {
+                    state = BattleState.Won;
+                    sceneMangr.LoadNewScene("Win Scene");
+                }
             }
             else
             {
@@ -371,6 +441,13 @@ public class BattleSystem : MonoBehaviour
         if (playerAbility.abilityHitChance >= 100)
         {
             unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+
+            if (enemyUnit.unitHealth <= 0)
+            {
+                state = BattleState.Won;
+                sceneMangr.LoadNewScene("Win Scene");
+            }
+                
         }
     }
 }

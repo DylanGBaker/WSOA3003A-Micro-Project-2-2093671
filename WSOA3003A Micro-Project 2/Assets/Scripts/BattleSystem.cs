@@ -38,6 +38,11 @@ public class BattleSystem : MonoBehaviour
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
         state = BattleState.Start;
         StartCoroutine(SetupBattle());
+        playerAttackSymbol.SetActive(false);
+        playerDefenceSymbol.SetActive(false);
+        enemyAttackSymbol.SetActive(false);
+        enemyDefenceSymbol.SetActive(false);
+
     }
 
     private void Update()

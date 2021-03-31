@@ -20,6 +20,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Unit enemyUnit;
     [SerializeField] PlayerAbility playerAbility;
     [SerializeField] GameUI gameUI;
+    [SerializeField] HealthBar playerHealthBar;
+    [SerializeField] HealthBar enemyHealthBar;
 
 
     private void Start()
@@ -28,6 +30,8 @@ public class BattleSystem : MonoBehaviour
         usedAbility = false;
         playerUnit.unitHealth = 20;
         enemyUnit.unitHealth = 23;
+        playerHealthBar.setHealth(playerUnit.unitHealth);
+        enemyHealthBar.setHealth(enemyUnit.unitHealth);
         state = BattleState.Start;
         StartCoroutine(SetupBattle());
     }
@@ -127,6 +131,8 @@ public class BattleSystem : MonoBehaviour
         else
             unitDead = enemyUnit.TakeDamage(playerUnit.unitDamage);
 
+        enemyHealthBar.setHealth(enemyUnit.unitHealth);
+
         state = BattleState.EnemyTurn;
 
         yield return new WaitForSeconds(0.5f);
@@ -149,6 +155,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator playerDefense()
     {
         playerUnit.useDefense(playerUnit.unitDefense);
+        playerHealthBar.setHealth(playerUnit.unitHealth);
 
         yield return new WaitForSeconds(0.5f);
         state = BattleState.EnemyTurn;
@@ -208,8 +215,9 @@ public class BattleSystem : MonoBehaviour
     {
         gameUI.EnemyChoice.text = "Enemy is attacking";
         unitDead = playerUnit.TakeDamage(enemyUnit.unitDamage);
+        playerHealthBar.setHealth(playerUnit.unitHealth);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         if (unitDead)
         {
@@ -227,8 +235,9 @@ public class BattleSystem : MonoBehaviour
     {
         gameUI.EnemyChoice.text = "Enemy is defending";
         enemyUnit.useDefense(enemyUnit.unitDefense);
+        enemyHealthBar.setHealth(enemyUnit.unitHealth);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         state = BattleState.PlayerTurn;
         playerTurn();
     }

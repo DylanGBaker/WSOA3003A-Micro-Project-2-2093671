@@ -13,7 +13,6 @@ public class GameUI : MonoBehaviour
     public TMP_Text EnemyDefenseValue;
     public TMP_Text PlayerHealth;
     public TMP_Text EnemyHealth;
-    public TMP_Text EnemyChoice;
     public TMP_Text PlayerTurnText;
     public GameObject abilityButton;
 

@@ -27,6 +27,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameUI gameUI;
     [SerializeField] HealthBar playerHealthBar;
     [SerializeField] HealthBar enemyHealthBar;
+    [SerializeField] PartcleSystm partcleSystm;
 
 
     private void Start()
@@ -117,7 +118,6 @@ public class BattleSystem : MonoBehaviour
         playerAbilitySymbol.SetActive(false);
 
         gameUI.PlayerTurnText.text = "Your Turn....";
-        gameUI.EnemyChoice.text = "";
 
         if (usedAbility == true)
             gameUI.PlayerAbilityPercentage.text = "0%";
@@ -146,6 +146,7 @@ public class BattleSystem : MonoBehaviour
         unitDead = enemyUnit.TakeDamage(playerUnit.unitDamage);
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
         state = BattleState.EnemyTurn;
+        Instantiate(partcleSystm.enemyBloodeffect, enemyUnit.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(2f);
 
@@ -175,9 +176,10 @@ public class BattleSystem : MonoBehaviour
         playerDefenceSymbol.SetActive(true);
         playerUnit.useDefense(playerUnit.unitDefense);
         playerHealthBar.setHealth(playerUnit.unitHealth);
-
-        yield return new WaitForSeconds(0.5f);
+        Instantiate(partcleSystm.defenseEffct, playerUnit.transform.position, Quaternion.identity);
         state = BattleState.EnemyTurn;
+
+        yield return new WaitForSeconds(2f);  
         enemyTurn();
     }
 
@@ -239,9 +241,9 @@ public class BattleSystem : MonoBehaviour
     IEnumerator enemyAttack()
     {
         enemyAttackSymbol.SetActive(true);
-        gameUI.EnemyChoice.text = "Enemy is attacking";
         unitDead = playerUnit.TakeDamage(enemyUnit.unitDamage);
         playerHealthBar.setHealth(playerUnit.unitHealth);
+        Instantiate(partcleSystm.playerBloodeffect, playerUnit.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(2f);
 
@@ -260,9 +262,9 @@ public class BattleSystem : MonoBehaviour
     IEnumerator enemyDefense()
     {
         enemyDefenceSymbol.SetActive(true);
-        gameUI.EnemyChoice.text = "Enemy is defending";
         enemyUnit.useDefense(enemyUnit.unitDefense);
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
+        Instantiate(partcleSystm.defenseEffct, enemyUnit.transform.position, Quaternion.identity);
 
         yield return new WaitForSeconds(2f);
         state = BattleState.PlayerTurn;

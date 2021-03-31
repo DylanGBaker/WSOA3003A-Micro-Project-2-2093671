@@ -12,6 +12,10 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
     public GameObject Player;
     public GameObject Enemy;
+    public GameObject playerAttackSymbol;
+    public GameObject playerDefenceSymbol;
+    public GameObject enemyAttackSymbol;
+    public GameObject enemyDefenceSymbol;
     public int enemyRandomNum;
     public int abilityRandomNumber;
 
@@ -126,16 +130,13 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator playerAttack()
     {
-        if (usedAbility == true)
-            unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
-        else
             unitDead = enemyUnit.TakeDamage(playerUnit.unitDamage);
 
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
 
         state = BattleState.EnemyTurn;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         if (unitDead)
         {
@@ -148,7 +149,13 @@ public class BattleSystem : MonoBehaviour
         }
 
         if (usedAbility == false)
+        {
             playerAbility.IncreaseChance(10);
+        }
+        else if (usedAbility == true)
+        {
+            playerAbility.abilityHitChance = 0;
+        }
     }
 
 
@@ -252,7 +259,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 9)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -264,7 +271,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 8)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -276,7 +283,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 7)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -288,7 +295,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 6)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -300,7 +307,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 5)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -312,7 +319,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 4)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -324,7 +331,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 3)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -336,7 +343,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 2)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -348,7 +355,7 @@ public class BattleSystem : MonoBehaviour
         {
             if (abilityRandomNumber > 1)
             {
-                StartCoroutine(playerAttack());
+                unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
             }
             else
             {
@@ -358,7 +365,7 @@ public class BattleSystem : MonoBehaviour
 
         if (playerAbility.abilityHitChance >= 100)
         {
-                StartCoroutine(playerAttack());
+            unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
         }
     }
 }

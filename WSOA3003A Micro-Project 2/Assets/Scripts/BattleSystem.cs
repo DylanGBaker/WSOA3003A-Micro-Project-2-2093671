@@ -273,6 +273,9 @@ public class BattleSystem : MonoBehaviour
 
     public void abilityButton()
     {
+        if (state != BattleState.PlayerTurn)
+            return;
+
         playerAbilitySymbol.SetActive(true);
         usedAbility = true;
         abilityRandomNumber = Random.Range(1, 11);

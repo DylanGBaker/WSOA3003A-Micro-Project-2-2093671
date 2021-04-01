@@ -300,6 +300,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 9)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -318,6 +319,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 8)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -336,6 +338,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 7)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -354,6 +357,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 6)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -372,6 +376,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 5)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -390,6 +395,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 4)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -408,6 +414,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 3)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -426,6 +433,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 2)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -444,6 +452,7 @@ public class BattleSystem : MonoBehaviour
             if (abilityRandomNumber > 1)
             {
                 unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+                enemyTurn();
 
                 if (enemyUnit.unitHealth <= 0)
                 {
@@ -460,6 +469,7 @@ public class BattleSystem : MonoBehaviour
         if (playerAbility.abilityHitChance >= 100)
         {
             unitDead = enemyUnit.useAbility(playerUnit.abilityDamage);
+            enemyTurn();
 
             if (enemyUnit.unitHealth <= 0)
             {

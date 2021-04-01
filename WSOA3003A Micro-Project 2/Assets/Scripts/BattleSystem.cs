@@ -32,6 +32,7 @@ public class BattleSystem : MonoBehaviour
 
     private void Start()
     {
+        gameUI.enemiesChoicePercentage.text = "Enemy has a 90% of attacking";
         unitDead = false;
         usedAbility = false;
         playerUnit.unitHealth = 20;
@@ -50,6 +51,15 @@ public class BattleSystem : MonoBehaviour
     private void Update()
     {
         setUnitAttackAndDefense();
+
+        if (enemyUnit.unitHealth >= 15)
+            gameUI.enemiesChoicePercentage.text = "Enemy has a 90% of attacking";
+
+        if (enemyUnit.unitHealth < 15 && enemyUnit.unitHealth > 5)
+            gameUI.enemiesChoicePercentage.text = "Enemy has a 70% of attacking";
+
+        if (enemyUnit.unitHealth <= 5)
+            gameUI.enemiesChoicePercentage.text = "Enemy has a 10% of attacking";
     }
 
     private void setUnitAttackAndDefense()

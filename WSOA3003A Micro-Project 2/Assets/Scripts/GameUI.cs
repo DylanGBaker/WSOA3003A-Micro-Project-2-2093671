@@ -14,6 +14,7 @@ public class GameUI : MonoBehaviour
     public TMP_Text PlayerHealth;
     public TMP_Text EnemyHealth;
     public TMP_Text PlayerTurnText;
+    public TMP_Text enemiesChoicePercentage; 
     public GameObject abilityButton;
 
     [SerializeField] BattleSystem battleSystem;
@@ -30,6 +31,6 @@ public class GameUI : MonoBehaviour
 
         EnemyDamageValue.text = enemyUnit.unitDamage.ToString();
         EnemyDefenseValue.text = enemyUnit.unitDefense.ToString();
-        EnemyHealth.text = enemyUnit.unitHealth.ToString();          
+        EnemyHealth.text = enemyUnit.unitHealth.ToString(); 
     }
 }

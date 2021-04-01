@@ -28,6 +28,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] HealthBar playerHealthBar;
     [SerializeField] HealthBar enemyHealthBar;
     [SerializeField] PartcleSystm partcleSystm;
+    [SerializeField] AudioSource1 audioSource1;
+    [SerializeField] AudioSource2 audioSource2;
 
 
     private void Start()
@@ -152,6 +154,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator playerAttack()
     {
+        audioSource1.swordUnsheathingsound.Play();
         playerAttackSymbol.SetActive(true);
         unitDead = enemyUnit.TakeDamage(playerUnit.unitDamage);
         enemyHealthBar.setHealth(enemyUnit.unitHealth);
@@ -183,6 +186,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator playerDefense()
     {
+        audioSource2.defenseSound.Play();
         playerDefenceSymbol.SetActive(true);
         playerUnit.useDefense(playerUnit.unitDefense);
         playerHealthBar.setHealth(playerUnit.unitHealth);
